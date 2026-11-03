@@ -3,7 +3,8 @@
 A modern, responsive website for a solar energy company, showcasing solar installation services and completed projects.
 
 ## 🔗 Live Demo
-[View Live Site][](https://few-solarweb.netlify.app)
+[View Live Site](https://few-solarweb.netlify.app)
+
 
 ## 📌 About
 Few Solar is a client website built to establish an online presence for a solar energy business. It highlights the company's services, portfolio of completed solar installations, and provides an easy way for potential customers to get in touch.
@@ -28,4 +29,4 @@ Deployed via Netlify.
 ## 👨‍💻 Author
 **Muhammad Aliyan**  
 Co-founder, D'zine  
-[LinkedIn](https://linkedin.com/in/muhammadaliyandev) | [GitHub](https://github.com/he111-doctom)
+[LinkedIn](https://linkedin.com/in/muhammadaliyandev) | [GitHub](https://github.com/muhammadaliyandev)
