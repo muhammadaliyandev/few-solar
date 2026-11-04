@@ -48,7 +48,7 @@ npm run preview  # preview the production build
 ```
 
 ## 🚀 Deployment
-Deployed via Netlify — build settings are included in `netlify.toml` (build command `npm run build`, publish directory `dist`).
+Deployed on Vercel — every push to `main` auto-deploys (Vite preset, build `npm run build`, output `dist`).
 
 ## 📷 Preview
 ![FEW Solar Preview](public/images/hero-solar-farm.jpg)
