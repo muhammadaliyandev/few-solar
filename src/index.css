@@ -1,0 +1,731 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ CUSTOM STYLES ============ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(120% 100% at 50% 0%, #EEF2F1 0%, #E4E9E7 55%, #DCE3E0 100%);
+    }
+
+    .font-display { font-family: 'Sora', sans-serif; }
+
+    .d1 { animation-delay: .05s; }
+    .d2 { animation-delay: .18s; }
+    .d3 { animation-delay: .32s; }
+    .d4 { animation-delay: .46s; }
+    .d5 { animation-delay: .6s; }
+
+    /* Glass Surfaces - Same as 1200+ card */
+    .glass-nav, .glass-card, .glass-pill {
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    /* ============ GLASS HEADING - EXACT SAME AS 1200+ CARD ============ */
+  /* ============ GLASS HEADING - EXACT SAME AS 1200+ CARD ============ */
+.glass-heading {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.14);     /* Same as 1200+ */
+  /* backdrop-filter: blur(18px) saturate(160%);  */
+  /* -webkit-backdrop-filter: blur(18px) saturate(160%); */
+  border: 1px solid rgba(255, 255, 255, 0.28); /* Same as 1200+ */
+  border-radius: 16px;                        /* Same as 1200+ (rounded-2xl) */
+  padding: 16px 20px;                         /* Same as 1200+ (px-5 py-4) */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  max-width: fit-content;
+}
+
+.glass-heading:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.40);
+}
+    #navPill {
+      transition: background-color .35s ease, box-shadow .35s ease;
+    }
+
+    #navPill.scrolled {
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.25);
+    }
+
+    #navPill.scrolled .nav-link,
+    #navPill.scrolled .logo-text {
+      color: #0F172A !important;
+    }
+
+    #navPill.scrolled .logo-text-accent {
+      color: #16A34A !important;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.92);
+      transition: color .2s ease, opacity .2s ease;
+    }
+
+    .nav-link:hover { opacity: 0.75; }
+
+    .btn-cta {
+      background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+      box-shadow: 0 8px 22px -8px rgba(22, 163, 74, 0.6);
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -8px rgba(22, 163, 74, 0.7);
+      filter: brightness(1.05);
+    }
+
+    /* Mega Dropdown */
+    .has-dropdown .mega {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(6px);
+      transition: opacity .2s ease, transform .2s ease, visibility .2s;
+    }
+
+    .has-dropdown:hover .mega,
+    .has-dropdown:focus-within .mega {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-chevron {
+      transition: transform .2s ease;
+    }
+
+    .has-dropdown:hover .nav-chevron {
+      transform: rotate(180deg);
+    }
+
+    .mega-item {
+      transition: background-color .15s ease, padding-left .15s ease;
+    }
+
+    .mega-item:hover {
+      background-color: #F0FDF4;
+      padding-left: 20px;
+    }
+
+    .mega-item:hover .mega-icon {
+      background-color: #16A34A;
+      color: #fff;
+    }
+
+    .mega-icon {
+      transition: background-color .15s ease, color .15s ease;
+    }
+
+    /* Mobile Panel */
+    #mobilePanel {
+      transition: transform .4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .mobile-acc.open .mobile-acc-body {
+      max-height: 480px;
+    }
+
+    .mobile-acc.open .mobile-chevron {
+      transform: rotate(180deg);
+    }
+
+    .mobile-chevron {
+      transition: transform .25s ease;
+    }
+
+    .avatar {
+      box-shadow: 0 0 0 2px rgba(20, 25, 23, 0.6);
+    }
+
+    /* ============ FLIP CARD STYLES ============ */
+    .flip-card {
+      width: 100%;
+      height: 180px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner,
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      top: 0;
+      left: 0;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .flip-card-front {
+      z-index: 2;
+      background: linear-gradient(145deg, #f8fafc, #f1f5f9);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .flip-card-front .brand-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .flip-card:hover .brand-icon {
+      transform: scale(1.08);
+    }
+
+    .flip-card-front .brand-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: #94a3b8;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ============ FLIP CARD BACK - WITH LOGO ============ */
+    .flip-card-back {
+      transform: rotateY(180deg);
+      z-index: 1;
+      background: linear-gradient(145deg, #f0fdf4, #dcfce7);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      padding: 12px;
+    }
+
+    .flip-card-back .company-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      background: white;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    .flip-card-back .company-name {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #0f172a;
+    }
+
+    .flip-card-back .company-tag {
+      font-size: 0.6rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* Individual card themes - Front */
+    .flip-card:nth-child(1) .flip-card-front {
+      background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
+    }
+    .flip-card:nth-child(1) .brand-icon {
+      background: #cbd5e1;
+      color: #334155;
+    }
+    .flip-card:nth-child(1) .flip-card-back {
+      background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
+    }
+    .flip-card:nth-child(1) .company-logo {
+      background: #334155;
+      color: white;
+    }
+
+    .flip-card:nth-child(2) .flip-card-front {
+      background: linear-gradient(145deg, #eff6ff, #dbeafe);
+    }
+    .flip-card:nth-child(2) .brand-icon {
+      background: #bfdbfe;
+      color: #1e40af;
+    }
+    .flip-card:nth-child(2) .flip-card-back {
+      background: linear-gradient(145deg, #eff6ff, #dbeafe);
+    }
+    .flip-card:nth-child(2) .company-logo {
+      background: #1e40af;
+      color: white;
+    }
+
+    .flip-card:nth-child(3) .flip-card-front {
+      background: linear-gradient(145deg, #fef2f2, #fecaca);
+    }
+    .flip-card:nth-child(3) .brand-icon {
+      background: #fca5a5;
+      color: #991b1b;
+    }
+    .flip-card:nth-child(3) .flip-card-back {
+      background: linear-gradient(145deg, #fef2f2, #fecaca);
+    }
+    .flip-card:nth-child(3) .company-logo {
+      background: #991b1b;
+      color: white;
+    }
+
+    .flip-card:nth-child(4) .flip-card-front {
+      background: linear-gradient(145deg, #fffbeb, #fde68a);
+    }
+    .flip-card:nth-child(4) .brand-icon {
+      background: #fcd34d;
+      color: #92400e;
+    }
+    .flip-card:nth-child(4) .flip-card-back {
+      background: linear-gradient(145deg, #fffbeb, #fde68a);
+    }
+    .flip-card:nth-child(4) .company-logo {
+      background: #92400e;
+      color: white;
+    }
+
+    .flip-card:nth-child(5) .flip-card-front {
+      background: linear-gradient(145deg, #faf5ff, #e9d5ff);
+    }
+    .flip-card:nth-child(5) .brand-icon {
+      background: #d8b4fe;
+      color: #6b21a8;
+    }
+    .flip-card:nth-child(5) .flip-card-back {
+      background: linear-gradient(145deg, #faf5ff, #e9d5ff);
+    }
+    .flip-card:nth-child(5) .company-logo {
+      background: #6b21a8;
+      color: white;
+    }
+
+    .flip-card:nth-child(6) .flip-card-front {
+      background: linear-gradient(145deg, #eef2ff, #c7d2fe);
+    }
+    .flip-card:nth-child(6) .brand-icon {
+      background: #a5b4fc;
+      color: #3730a3;
+    }
+    .flip-card:nth-child(6) .flip-card-back {
+      background: linear-gradient(145deg, #eef2ff, #c7d2fe);
+    }
+    .flip-card:nth-child(6) .company-logo {
+      background: #3730a3;
+      color: white;
+    }
+
+    /* Portfolio Section */
+    .portfolio-section {
+      padding: 120px 0;
+      background: #f8fafc;
+    }
+
+    .portfolio-header {
+      max-width: 850px;
+      margin: 0 auto 60px;
+      text-align: center;
+    }
+
+    .portfolio-badge {
+      display: inline-flex;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #16a34a;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .portfolio-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #0f172a;
+    }
+
+    .portfolio-description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #64748b;
+    }
+
+    .portfolio-filters {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .portfolio-filters button {
+      padding: 12px 22px;
+      border: none;
+      border-radius: 999px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 600;
+      transition: .3s;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, .05);
+    }
+
+    .portfolio-filters button.active,
+    .portfolio-filters button:hover {
+      background: #16a34a;
+      color: #fff;
+    }
+
+    .carousel-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+
+    .carousel-btn {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #e2e8f0;
+      background: #fff;
+      color: #0f172a;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .3s ease;
+    }
+
+    .carousel-btn:hover {
+      background: #16a34a;
+      color: #fff;
+      border-color: #16a34a;
+      transform: scale(1.1);
+    }
+
+    .portfolio-grid {
+      display: flex;
+      gap: 30px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+      scroll-padding: 20px;
+      scrollbar-width: none;
+      flex: 1;
+    }
+
+    .portfolio-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 28px;
+      overflow: hidden;
+      transition: .35s;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
+      flex: 0 0 350px;
+      min-width: 350px;
+    }
+
+    .project-card.hidden {
+      display: none;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .12);
+    }
+
+    .project-image {
+      height: 260px;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .6s;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .project-content {
+      padding: 30px;
+    }
+
+    .project-category {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: #16a34a;
+      font-weight: 700;
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .project-content h3 {
+      font-size: 1.45rem;
+      margin-bottom: 14px;
+      color: #0f172a;
+    }
+
+    .project-content p {
+      color: #64748b;
+      line-height: 1.8;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      padding: 120px 0;
+      background: #f8fafc;
+    }
+
+    .container {
+      width: min(1280px, 92%);
+      margin: auto;
+    }
+
+    .section-header {
+      max-width: 850px;
+      margin: 0 auto 70px;
+      text-align: center;
+    }
+
+    .section-badge {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, .1);
+      color: #16a34a;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: #0f172a;
+      margin-bottom: 20px;
+    }
+
+    .section-description {
+      color: #64748b;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+      gap: 30px;
+      margin-top: 60px;
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+
+    .testimonial-card {
+      background: #fff;
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .05);
+      transition: .35s;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .quote-icon {
+      font-size: 1.2rem;
+      color: #f59e0b;
+      margin-bottom: 20px;
+      letter-spacing: 3px;
+    }
+
+    .testimonial-card p {
+      color: #64748b;
+      line-height: 1.9;
+      margin-bottom: 30px;
+    }
+
+    .client-info h4 {
+      color: #0f172a;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .client-info span {
+      color: #94a3b8;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 25px;
+      margin-top: 80px;
+    }
+
+    .stat-box {
+      background: #fff;
+      padding: 35px;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, .03);
+    }
+
+    .stat-box h3 {
+      font-size: 2.5rem;
+      color: #16a34a;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .stat-box p {
+      color: #64748b;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 120px 0;
+      background: #ffffff;
+    }
+
+    .contact-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #0F172A;
+      color: #94a3b8;
+      padding: 80px 0 30px;
+    }
+
+    .footer-link {
+      transition: color .2s ease;
+    }
+
+    .footer-link:hover {
+      color: #22C55E;
+    }
+
+    /* Toast */
+    #successToast {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+    }
+
+    #successToast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .portfolio-section, .testimonials-section, .contact-section {
+        padding: 80px 0;
+      }
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+      .project-image {
+        height: 220px;
+      }
+      .stats-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .stat-box h3 {
+        font-size: 1.9rem;
+      }
+      .flip-card {
+        height: 150px;
+      }
+      .flip-card-front .brand-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+      }
+      .flip-card-back .company-logo {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+      }
+      .flip-card-back .company-name {
+        font-size: 0.85rem;
+      }
+      .glass-heading {
+        padding: 12px 16px !important;
+        border-radius: 14px;
+      }
+      .testimonials-grid {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    @media(max-width: 480px) {
+      .glass-heading {
+        padding: 10px 14px !important;
+        border-radius: 12px;
+      }
+      .flip-card {
+        height: 130px;
+      }
+      .flip-card-back .company-logo {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
