@@ -1,4 +1,4 @@
-# FEW Solar
+  # FEW Solar
 
 A modern, responsive website for a solar energy company in Pakistan — showcasing solar installation services, an instant solar system calculator, transparent packages & pricing, a net metering guide and completed projects.
 
@@ -23,7 +23,8 @@ FEW Solar is a client website built to establish an online presence for a solar 
 - React 18 + Vite
 - Tailwind CSS 3
 - JavaScript (ES modules)
-- Deployed via Netlify
+- Deployed on Vercel
+
 
 ## 📁 Project Structure
 ```
