@@ -5,7 +5,7 @@ A modern, responsive website for a solar energy company in Pakistan — showcasi
 **v2.0 — Rebuilt with React + Vite + Tailwind CSS** (component-based architecture; previously a single-file HTML page).
 
 ## 🔗 Live Demo
-[View Live Site](https://few-solarweb.netlify.app)
+[View Live Site](https://few-solar-six.vercel.app/)
 
 ## 📌 About
 FEW Solar is a client website built to establish an online presence for a solar energy business. It highlights the company's services, portfolio of completed solar installations, helps visitors estimate the right solar system for their home or business, and provides an easy way to request a quote.
