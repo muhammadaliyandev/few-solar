@@ -61,3 +61,14 @@ Co-founder, D'zine
 
 ## 📄 License
 MIT — see [LICENSE](LICENSE).
+
+## Full-Stack (v3.0)
+
+The site is now a full-stack app: the contact form and the solar calculator send **real leads**
+to a backend API, and an admin panel manages them.
+
+- **API:** `server/` — Hono + PostgreSQL (`pg`), runs on Node locally and on **Wasmer Edge** in production
+- **Endpoints:** `POST /api/leads` (public), `GET /api/leads` + `PATCH /api/leads/:id` (admin-key protected), `GET /api/health`
+- **Admin panel:** open the site with `#/admin` (e.g. `https://few-solar-six.vercel.app/#/admin`) and enter the `ADMIN_KEY`
+- **Local full-stack run:** terminal 1 — `cd server && npm install && npm start` (port 3000); terminal 2 — `npm run dev` (site)
+- **Deploy:** frontend auto-deploys on Vercel from `main`; API deploys to Wasmer Edge from the `server/` folder with a managed PostgreSQL (`DATABASE_URL`, `DATABASE_SSL=true`, `ADMIN_KEY`)
