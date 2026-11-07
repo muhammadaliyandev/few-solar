@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { submitLead } from '../lib/api';
 
 const SETTINGS = {
   electricityRate: 65,
@@ -13,6 +14,30 @@ export default function Calculator() {
   const [units, setUnits] = useState('');
   const [city, setCity] = useState('Lahore');
   const [result, setResult] = useState(null);
+  const [quoteName, setQuoteName] = useState('');
+  const [quotePhone, setQuotePhone] = useState('');
+  const [quoteState, setQuoteState] = useState('idle');
+
+  const requestQuote = async () => {
+    if (quoteName.trim().length < 2 || quotePhone.replace(/\D/g, '').length < 7) {
+      setQuoteState('invalid');
+      return;
+    }
+    setQuoteState('sending');
+    try {
+      await submitLead({
+        name: quoteName.trim(),
+        phone: quotePhone.trim(),
+        city,
+        monthlyBill: parseFloat(bill) || null,
+        source: 'calculator',
+        message: `Calculator estimate — System: ${result.systemSize}, Panels: ${result.panelCount}, Roof: ${result.roofArea}, Est. cost: ${result.cost}, Monthly saving: ${result.saving}`,
+      });
+      setQuoteState('sent');
+    } catch {
+      setQuoteState('error');
+    }
+  };
 
   const calculate = () => {
     let u = parseFloat(units);
@@ -360,17 +385,19 @@ export default function Calculator() {
 
 
 
-                      <a
-
-                          href="#contact"
-
-                          className="btn-cta mt-8 flex justify-center items-center rounded-full py-4 text-white font-semibold"
-
-                      >
-
-                          Get Free Site Survey
-
-                      </a>
+                      <div className="mt-8">
+                          <p className="text-sm font-semibold text-navy mb-3">Get this quote — book a free site survey:</p>
+                          <div className="flex flex-col sm:flex-row gap-3">
+                              <input value={quoteName} onChange={(e) => setQuoteName(e.target.value)} placeholder="Your name" className="flex-1 bg-white border border-slate-200 focus:border-leaf-500 focus:ring-1 focus:ring-leaf-500 rounded-full px-4 py-3 text-sm outline-none" />
+                              <input value={quotePhone} onChange={(e) => setQuotePhone(e.target.value)} placeholder="Phone / WhatsApp" className="flex-1 bg-white border border-slate-200 focus:border-leaf-500 focus:ring-1 focus:ring-leaf-500 rounded-full px-4 py-3 text-sm outline-none" />
+                          </div>
+                          <button onClick={requestQuote} disabled={quoteState === 'sending'} className="btn-cta mt-3 w-full flex justify-center items-center rounded-full py-4 text-white font-semibold disabled:opacity-60">
+                              {quoteState === 'sending' ? 'Sending...' : 'Request This Quote'}
+                          </button>
+                          {quoteState === 'sent' && <p className="text-green-600 text-sm mt-3">Request received! Our team will call you shortly.</p>}
+                          {quoteState === 'invalid' && <p className="text-red-500 text-sm mt-3">Please enter your name and a valid phone number.</p>}
+                          {quoteState === 'error' && <p className="text-red-500 text-sm mt-3">Could not send right now — please use the contact form below.</p>}
+                      </div>
 
                   </div>
                   )}

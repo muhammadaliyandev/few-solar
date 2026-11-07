@@ -1,13 +1,27 @@
 import { useState } from 'react';
+import { submitLead } from '../lib/api';
 
 export default function Contact() {
   const [showToast, setShowToast] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowToast(true);
-    e.currentTarget.reset();
-    setTimeout(() => setShowToast(false), 4000);
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries());
+    setSending(true);
+    setError('');
+    try {
+      await submitLead({ ...data, source: 'contact' });
+      setShowToast(true);
+      form.reset();
+      setTimeout(() => setShowToast(false), 4000);
+    } catch {
+      setError('Request could not be sent right now. Please call or WhatsApp us instead.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -58,23 +72,24 @@ export default function Contact() {
                   <div className="grid sm:grid-cols-2 gap-4 mb-4">
                     <div>
                       <label className="block text-xs font-bold uppercase text-slate-500 mb-1.5" htmlFor="name">Name</label>
-                      <input required className="w-full bg-white border border-slate-200 focus:border-leaf-500 focus:ring-1 focus:ring-leaf-500 rounded-xl px-4 py-3 text-sm outline-none transition-colors" type="text" id="name" placeholder="Muhammad Ali" />
+                      <input required className="w-full bg-white border border-slate-200 focus:border-leaf-500 focus:ring-1 focus:ring-leaf-500 rounded-xl px-4 py-3 text-sm outline-none transition-colors" type="text" id="name" name="name" placeholder="Muhammad Ali" />
                     </div>
                     <div>
                       <label className="block text-xs font-bold uppercase text-slate-500 mb-1.5" htmlFor="phone">Phone</label>
-                      <input required className="w-full bg-white border border-slate-200 focus:border-leaf-500 focus:ring-1 focus:ring-leaf-500 rounded-xl px-4 py-3 text-sm outline-none transition-colors" type="tel" id="phone" placeholder="03001234567" />
+                      <input required className="w-full bg-white border border-slate-200 focus:border-leaf-500 focus:ring-1 focus:ring-leaf-500 rounded-xl px-4 py-3 text-sm outline-none transition-colors" type="tel" id="phone" name="phone" placeholder="03001234567" />
                     </div>
                   </div>
                   <div className="mb-4">
                     <label className="block text-xs font-bold uppercase text-slate-500 mb-1.5" htmlFor="email">Email</label>
-                    <input required className="w-full bg-white border border-slate-200 focus:border-leaf-500 focus:ring-1 focus:ring-leaf-500 rounded-xl px-4 py-3 text-sm outline-none transition-colors" type="email" id="email" placeholder="ali@example.com" />
+                    <input required className="w-full bg-white border border-slate-200 focus:border-leaf-500 focus:ring-1 focus:ring-leaf-500 rounded-xl px-4 py-3 text-sm outline-none transition-colors" type="email" id="email" name="email" placeholder="ali@example.com" />
                   </div>
                   <div className="mb-6">
                     <label className="block text-xs font-bold uppercase text-slate-500 mb-1.5" htmlFor="message">Message</label>
-                    <textarea required rows="4" className="w-full bg-white border border-slate-200 focus:border-leaf-500 focus:ring-1 focus:ring-leaf-500 rounded-xl px-4 py-3 text-sm outline-none transition-colors resize-none" id="message" placeholder="Details about your house rooftop, monthly bill, or location..."></textarea>
+                    <textarea required rows="4" className="w-full bg-white border border-slate-200 focus:border-leaf-500 focus:ring-1 focus:ring-leaf-500 rounded-xl px-4 py-3 text-sm outline-none transition-colors resize-none" id="message" name="message" placeholder="Details about your house rooftop, monthly bill, or location..."></textarea>
                   </div>
-                  <button type="submit" className="btn-cta w-full text-white font-bold py-3.5 px-6 rounded-full text-sm">
-                    Submit Request
+                  {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
+                  <button type="submit" disabled={sending} className="btn-cta w-full text-white font-bold py-3.5 px-6 rounded-full text-sm disabled:opacity-60">
+                    {sending ? 'Sending...' : 'Submit Request'}
                   </button>
                 </form>
               </div>
