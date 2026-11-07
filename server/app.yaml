@@ -1,0 +1,5 @@
+# Wasmer Edge app config — FEW Solar API
+# Deploy: wasmer.io/new par GitHub repo connect karo, root directory "server" rakho,
+# phir Wasmer ki managed PostgreSQL add karke DATABASE_URL / DATABASE_SSL=true set karo.
+kind: wasmer.io/App.v0
+name: few-solar-api

@@ -1,0 +1,16 @@
+{
+  "name": "few-solar-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "FEW Solar API — leads backend (Hono + PostgreSQL), deploys to Wasmer Edge",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "hono": "^4.6.14",
+    "pg": "^8.13.1"
+  }
+}
