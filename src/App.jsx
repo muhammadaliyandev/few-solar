@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Hero from './components/Hero';
 import Calculator from './components/Calculator';
 import Brands from './components/Brands';
@@ -11,8 +12,19 @@ import Testimonials from './components/Testimonials';
 import Faq from './components/Faq';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import AdminLeads from './components/AdminLeads';
 
 export default function App() {
+  const [isAdmin, setIsAdmin] = useState(() => window.location.hash.startsWith('#/admin'));
+
+  useEffect(() => {
+    const onHash = () => setIsAdmin(window.location.hash.startsWith('#/admin'));
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  if (isAdmin) return <AdminLeads />;
+
   return (
     <>
       <Hero />
